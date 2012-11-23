@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-require_once 'lib/php/Hexdump.php';
+require_once 'Hexdump.php';
 
 // read from either stdin or a file
 if(isset($argv[1]) && $argv[1] !== '-') {

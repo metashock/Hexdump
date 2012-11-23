@@ -1,5 +1,5 @@
 <?php
-require_once 'lib/php/Hexdump.php';
+require_once 'Hexdump.php';
 
 // we display ourself
 $data =@file_get_contents($argv[0]);
