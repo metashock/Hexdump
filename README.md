@@ -6,10 +6,10 @@ This mini library provides a hexdump() function for php. I needed this during th
 Installation
 ------------
 
-- You can install Hexdump using pear:
+- You can install Hexdump using pear as the root user:
 
-    # pear channel-discover metashock.de/pirum
-    # pear install metashock/Hexdump-0.1.0
+    pear channel-discover metashock.de/pirum
+    pear install metashock/Hexdump-0.1.0
 
 - You can just download Hexdump.php and put in anywhere into your
   include\_path
