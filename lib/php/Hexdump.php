@@ -104,10 +104,10 @@ function hexdump (
     }
 
     // the last line needs special attention
-    $rest = $ncolumns - ($i % $ncolumns);
+    $remains = $ncolumns - ($i % $ncolumns);
 
     // display whitespaces for each 'missing' byte
-    echo str_repeat('   ', $rest)
+    echo str_repeat('   ', $remains)
     // and the asciis for the last bytes
         . '|' . strtr(substr($data, $i - ($i % $ncolumns)), $from, $to) . '|'
     // and newline
