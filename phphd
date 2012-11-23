@@ -1,0 +1,23 @@
+#!/usr/bin/php
+<?php
+
+require_once 'lib/php/Hexdump.php';
+
+// read from either stdin or a file
+if(isset($argv[1]) && $argv[1] !== '-') {
+    $data = file_get_contents($argv[1]);
+    if(!$data) {
+        echo 'Cannot read from ' . $argv[0];
+        exit(1);
+    }
+} else {
+    $data = file_get_contents('php://stdin');
+    if(!$data) {
+        echo 'Cannot read from stdin';
+        exit(1);
+    }
+}
+
+// output
+hexdump($data);
+
