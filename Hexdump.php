@@ -51,14 +51,14 @@ function hexdump (
     $linedelim = PHP_EOL,
     $uppercase = FALSE
 ) {
-    ob_start(NULL, 1024);
+    ob_start(NULL, 4096);
 
     if (is_string($data)){
         $len = strlen($data);
     } else if (is_array($data)) {
         $len = count($data);
     } else {
-        throw new InvalidArgumentException(
+        throw new InvalidArgumentException (
             '$data expected to be array or string. ' . gettype($data) . ' found.');
     }
 
@@ -73,9 +73,14 @@ function hexdump (
     static $from = '';
     static $to = '';
     if ($from === '') {
-        for ($i=0; $i<=0xFF; $i++) {
+        for ($i=0; $i<0x21; $i++) {
             $from .= chr($i);
-            $to .= ($i >= 0x20 && $i <= 0x7E) ? chr($i) : '.';
+            $to .= '.';
+        }
+
+        for ($i=0x7E; $i<=0xFF; $i++) {
+            $from .= chr($i);
+            $to .= '.';
         }
     }
     
@@ -91,8 +96,8 @@ function hexdump (
         // printf a new line after n * 2 chars
         if($c === $ncolumns) {
             // after each $ncolumns chars we print the ascii dump and newline
-            echo '|' . strtr(substr($data, $i - $ncolumns + 1, $ncolumns),
-                $from, $to) . '|' . $linedelim;
+            echo '|' , strtr(substr($data, $i - $ncolumns + 1, $ncolumns),
+                $from, $to) , '|' , $linedelim;
             $c = 0;
             $offset += $ncolumns;
             if($uppercase) {
@@ -109,9 +114,9 @@ function hexdump (
     // display whitespaces for each 'missing' byte
     echo str_repeat('   ', $remains)
     // and the asciis for the last bytes
-        . '|' . strtr(substr($data, $i - ($i % $ncolumns)), $from, $to) . '|'
+        , '|' , strtr(substr($data, $i - ($i % $ncolumns)), $from, $to) , '|'
     // and newline
-        . $linedelim;
+        , $linedelim;
 
     ob_end_flush();
 }
