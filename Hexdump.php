@@ -2,7 +2,7 @@
 /**
  * This library contains a hexdump function.
  *
- * PHP Version 4.0.0
+ * PHP Version 5.1.0
  * 
  * @category  Debug
  * @package   Hexdump
