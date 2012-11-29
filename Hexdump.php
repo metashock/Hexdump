@@ -30,7 +30,7 @@
  *
  * @throws InvalidArgumentException if $data is not a string
  *
- * @version 0.1.1
+ * @version 1.0.0
  * @since 0.1.0
  */
 function hexdump (
