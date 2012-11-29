@@ -9,7 +9,7 @@
  * @author    Thorsten Heymann <info@metashock.net>
  * @copyright 2011 - 2012 Thorsten Heymann
  * @license   http://www.opensource.org/licenses/bsd-license.php BSD
- * @version   0.1.1
+ * @version   1.0.0
  * @link      http://www.metashock.de/pirum
  * @since     0.1.0
  */
@@ -18,6 +18,8 @@
  * Prints a hexdump of data. You can configure the number of
  * bytes per line, the linedelimiter and choose whether hexadecimal
  * numbers should be uppercased or not.
+ *
+ * @example examples/demo.php
  *
  * @param string  $data      The data to be hexdumped 
  * @param integer $ncolumns  The number of bytes per line 
@@ -103,7 +105,12 @@ function hexdump (
             $c = 0;
 
             // increment line offset and prepend it to the new line
+            // if the end of data isn't reached now
             $offset += $ncolumns;
+            if ( $offset === $len) {
+                ob_end_flush();
+                return;
+            }
             if ($uppercase) {
                 printf('%08X: ', $offset);
             } else {
@@ -118,14 +125,14 @@ function hexdump (
 
     // get the number of remaining bytes
     $remains = $ncolumns - ($i % $ncolumns);
-
-    // display whitespaces for each remaining byte
-    echo str_repeat('   ', $remains)
-    // display the asciis for the last bytes
-        , '|' , strtr(substr($data, $i - ($i % $ncolumns)), $from, $to) , '|'
-    // and a final newline
-        , $linedelim;
-
+    if ( $remains !== $ncolumns) {
+        // display whitespaces for each remaining byte
+        echo str_repeat('   ', $remains)
+        // display the asciis for the last bytes
+            , '|' , strtr(substr($data, $i - ($i % $ncolumns)), $from, $to) , '|'
+        // and a final newline
+            , $linedelim;
+    }
     ob_end_flush();
 }
 

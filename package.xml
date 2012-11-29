@@ -10,15 +10,15 @@
   <email>info at metashock.net</email>
   <active>yes</active>
  </lead>
- <date>2012-11-23</date>
- <time>12:24:17</time>
+ <date>2012-11-29</date>
+ <time>12:28:03</time>
  <version>
-  <release>0.1.1</release>
-  <api>0.1.1</api>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
  </version>
  <stability>
-  <release>beta</release>
-  <api>beta</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
  <license uri="http://www.opensource.org/licenses/bsd-license.php">BSD</license>
  <notes>
@@ -26,10 +26,10 @@
  </notes>
  <contents>
   <dir name="/">
-   <file md5sum="e539fceff00bde81e03066b3ae3655a3" name="README.md" role="doc" />
-   <file md5sum="c7dfb100a727588f942cc2523cbaed8d" name="demo.php" role="doc" />
-   <file md5sum="39c50803f69ad8c723248d77c51734cd" name="Hexdump.php" role="php" />
-   <file baseinstalldir="/" md5sum="948b8fed29db52e4442c3ddcc73e1713" name="phphd" role="script" />
+   <file md5sum="1ada48e8fe14c8a3f41c7f57a73e3b5e" name="README.md" role="doc" />
+   <file md5sum="3b8485bb6b857b51b85aeb5a985cbc8e" name="demo.php" role="doc" />
+   <file md5sum="0f7e79d43962a304bfe7c548d4edf0b7" name="Hexdump.php" role="php" />
+   <file baseinstalldir="/" md5sum="f60d14421d7a9123f114234f6e8867f2" name="phphd" role="script" />
   </dir>
  </contents>
  <dependencies>
