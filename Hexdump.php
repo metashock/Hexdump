@@ -28,7 +28,8 @@
  *
  * @return void
  *
- * @throws InvalidArgumentException if $data is not a string
+ * @throws InvalidArgumentException if one of the params data type mismatch
+ * @throws UnexpectedValueException if $ncolumns is lower than 1
  *
  * @version 1.0.0
  * @since 0.1.0
@@ -40,24 +41,51 @@ function hexdump (
     $uppercase = false
 ) {
 
-    // will contain a binary string with all non printable bytes
-    static $from = '';
-    // will contain a string containing length of $from times '.'
-    static $to = '';
-
-    // the column of the current byte
-    $c = 1;
-    // total offset in $data
-    $offset = 0;
-
-    // check argument type grab length of $data
-    if (is_string($data)) {
-        $len = strlen($data);
-    } else {
+    // check the type of $data
+    if (!is_string($data)) {
         throw new InvalidArgumentException(
             '$data expected to be string. ' . gettype($data) . ' found.'
         );
     }
+
+    // check the type of $ncolumns
+    if (!is_int($ncolumns)) {
+        throw new InvalidArgumentException(
+            '$ncolumns expected to be integer. ' . gettype($ncolumns) . ' found.'
+        );
+    }
+
+    // check whether $ncolumns is a positive integer and greater than zero
+    if ($ncolumns < 1 ) {
+        throw new UnexpectedValueException(
+            '$ncolumns expected to be greater than zero. Got ' . strval($ncolumns)
+        );
+    }
+
+    // check the type of $linedelim
+    if (!is_string($linedelim)) {
+        throw new InvalidArgumentException(
+            '$linedelim expected to be string. ' . gettype($linedelim) . ' found.'
+        );
+    }
+
+    // check the type of $uppercase
+    if (!is_bool($uppercase)) {
+        throw new InvalidArgumentException(
+            '$uppercase expected to be string. ' . gettype($uppercase) . ' found.'
+        );
+    }
+
+    // will contain a binary string with all non printable bytes
+    static $from = '';
+    // will contain a string containing length of $from times '.'
+    static $to = '';
+    // the column of the current byte
+    $c = 1;
+    // total offset in $data
+    $offset = 0;
+    // total number of bytes to process
+    $len = strlen($data);
 
     // using output buffering to increase performance
     ob_start(null, 4096);
