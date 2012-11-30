@@ -87,6 +87,11 @@ function hexdump (
     // total number of bytes to process
     $len = strlen($data);
 
+    // return on empty input
+    if ($len < 1) {
+        return;
+    }
+
     // using output buffering to increase performance
     ob_start(null, 4096);
 
