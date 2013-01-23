@@ -224,10 +224,11 @@ Beside from Hexdump.php the package contains a command line executable `phphd`. 
     Prints a hexdump of FILE to stdout. If FILE was omitted ./phphd reads from stdin.
 
     -c COLUMNS     Number of bytes per row. COLUMNS must be a
-                postive integer and greater than zero
+                   postive integer and greater than zero
+
+    -f FORMAT      The output format. Can be plain or html    
 
     -u             Prints uppercased hex numbers
-
 
 ### Example usage
 

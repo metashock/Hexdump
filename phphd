@@ -1,23 +1,91 @@
-#!/usr/bin/php
+#!/usr/bin/php -ddisplay_errors=1
 <?php
+
+$usage = <<<EOF
+Usage : {$argv[0]} [OPTIONS] [FILE]
+
+Prints a hexdump of FILE to stdout. If FILE was omitted 
+{$argv[0]} reads from stdin.
+
+ -c COLUMNS     Number of bytes per row. COLUMNS must be a
+                postive integer and greater than zero
+
+ -f FORMAT      The output format. Can be plain or html    
+
+ -u             Prints uppercased hex numbers
+
+
+EOF;
 
 require_once 'Hexdump.php';
 
-// read from either stdin or a file
-if(isset($argv[1]) && $argv[1] !== '-') {
-    $data = file_get_contents($argv[1]);
-    if(!$data) {
-        echo 'Cannot read from ' . $argv[0];
+// the default options
+$ncolumns = 16;
+$format = 'plain';
+$uppercase = false;
+
+// parse commandline options
+$optcount = 1;
+$options = getopt('c:f:hu');
+if ($options === FALSE) {
+    echo $usage;
+    exit(1);
+}
+
+if(isset($options['h'])) {
+    echo $usage;
+    exit(1);
+}
+
+if(isset($options['c'])) {
+    $ncolumns = $options['c'];
+    if (!is_numeric($ncolumns)) {
+        echo $usage;
         exit(1);
+    }
+    $ncolumns = intval($ncolumns);
+    $optcount+=2;
+}
+
+if(isset($options['f'])) {
+    $format = $options['f'];
+    if (!in_array($format, array('html', 'plain'))) {
+        echo $usage;
+        exit(1);
+    }
+    $optcount+=2;
+}
+
+
+if(isset($options['u'])) {
+    $uppercase = true;
+    $optcount++;
+}
+
+
+// if no file name has been specified or
+// the filename is '-' we read from stdin
+if ($argc === $optcount) {
+    $filename = 'php://stdin';
+} else if ($argc === $optcount + 1) {
+    $filename = $argv[$argc - 1];
+    if($filename === '-') {
+        $filename = 'php://stdin';       
     }
 } else {
-    $data = @file_get_contents('php://stdin');
-    if($data === false) {
-        echo 'Cannot read from stdin';
-        exit(1);
+    echo $usage;
+    exit(1);
+}
+
+$data = @file_get_contents($filename);
+if($data === false) {
+    if($filename === 'php://stdin' || $filename === '-') {
+        $filename = 'stdin';
     }
+    echo 'Cannot read from \'' . $filename . '\'', PHP_EOL; 
+    exit(1);
 }
 
 // output
-hexdump($data);
+hexdump($data, $ncolumns, $format, $uppercase);
 
