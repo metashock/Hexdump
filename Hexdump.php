@@ -411,9 +411,14 @@ class Hexdump
                     if($format === 'html') {
                         $this->write('</pre>', 'plain', $output);
                     }
-
-                    ob_end_flush();
-                    return;
+                    
+                    $hexdump = ob_get_contents();
+                    if($output === 'stdout') {
+                        ob_end_flush();
+                    } else {
+                        ob_end_clean();
+                    }
+                    return $hexdump;
                 }
                 if ($uppercase) {
                     $this->write(sprintf('%08X: ', $offset), $format, $output);
