@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.0     http://pear.php.net/dtd/package-2.0.xsd">
  <name>Hexdump</name>
- <channel>www.metashock.de/pirum</channel>
+ <channel>www.metashock.de/pear</channel>
  <summary>Hexdump function for PHP</summary>
- <description>Hexdump function for php</description>
+ <description>Package to display hexdumps of binary data either as plain text or html</description>
  <lead>
   <name>Thorsten Heymann</name>
-  <user>metashock</user>
-  <email>info at metashock.net</email>
+  <user>hek2mgl</user>
+  <email>hek2mgl at metashock.net</email>
   <active>yes</active>
  </lead>
- <date>2012-11-29</date>
- <time>12:28:03</time>
+ <date>2013-01-24</date>
+ <time>22:31:14</time>
  <version>
-  <release>1.0.0</release>
-  <api>1.0.0</api>
+  <release>1.1.0</release>
+  <api>1.1.0</api>
  </version>
  <stability>
   <release>stable</release>
@@ -27,7 +27,7 @@
  <contents>
   <dir name="/">
    <file md5sum="1ada48e8fe14c8a3f41c7f57a73e3b5e" name="README.md" role="doc" />
-   <file md5sum="3b8485bb6b857b51b85aeb5a985cbc8e" name="demo.php" role="doc" />
+<!--   <file md5sum="3b8485bb6b857b51b85aeb5a985cbc8e" name="examples/demo.php" role="doc" /> -->
    <file md5sum="0f7e79d43962a304bfe7c548d4edf0b7" name="Hexdump.php" role="php" />
    <file baseinstalldir="/" md5sum="f60d14421d7a9123f114234f6e8867f2" name="phphd" role="script" />
   </dir>
