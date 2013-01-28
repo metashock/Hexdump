@@ -14,7 +14,7 @@ To install Hexdump you can use the PEAR installer or get a tarball and install t
 ___
 ### Using the PEAR installer
 
-If you didn't already discovered my pear channel you'll have to do it. Also you should issue a channel update:
+If you haven't discovered my pear channel yet you'll have to do it. Also you should issue a channel update:
 
     pear channel-discover metashock.de/pear
     pear channel-update metashock
@@ -30,17 +30,17 @@ If you want to install a specific version or a beta version you'll have to speci
 ___
 ### Manually download and install files
 
-Instead, you can just download the package from http://www.metashock.de/pear and put into a folder listed in your `include_path`. Please refer to the php.net [documentation](http://php.net/manual/en/ini.core.php#ini.include-path) of the `include_path` directive.
+Alternatively, you can just download the package from http://www.metashock.de/pear and put into a folder listed in your `include_path`. Please refer to the php.net [documentation](http://php.net/manual/en/ini.core.php#ini.include-path) of the `include_path` directive.
 
 ## Documentation
 
-Before using the `hexdump()` function you'll have to include Hexdump.php. If you followed the installation instructions you won't worry where the file is located in your classpath. Type:
+Before using the `hexdump()` function you'll have to include Hexdump.php. If you followed the installation instructions you don't need to worry about where the file is located in your classpath. Type:
 
 ```php
 require_once 'Hexdump.php';
 ```
 
-If the `require_once` fails, something went wrong with the installation.
+If `require_once` fails, something went wrong with the installation.
 
 ___
 ### hello world
@@ -67,9 +67,9 @@ $hexdump->draw("hello world!\n");
 ```
 This code will behave exactly the same as the hello world example above.
 
-So why an extra class? The sense of the Hexdump class is to act as a global configuration container for `hexdump()` thus to keep the syntax of the function itself short.
+So why an extra class? The purpose of the Hexdump class is to act as a global configuration container for `hexdump()` in order to keep the syntax of the function itself succinct.
 
-Options can be set or get using the static method `Hexdump::option()`
+Options can be set or queried by using the static method `Hexdump::option()`
 
 ```php
 // set option value
@@ -78,7 +78,18 @@ Hexdump::option('option_name', $option_value);
 $option_value = Hexdump::option('option_name');
 ```
 
-Note that you can overwrite global options once set using arguments passed to `hexdump()`
+
+Note that you can overwrite global options temporarily by passing apropriate arguments to `hexdump()`
+
+
+// hexdump($data, 8, "\n", 'html');
+
+Hexdump::option('format', 'html');
+
+// hexdump($data);
+
+hexdump($data, 16);
+
 
 ___
 ### Available Options
@@ -114,7 +125,7 @@ The following options are available. Default values are printed bold.
     <td>output</td>
     <td>string</th>
     <td><ul><li><b>stdout</b></li><li>stderr</li><li>none</li></ul></td>
-    <td>When set to true hexdump() will return the hexdump as a string instead of directly output it to stdout</td>
+    <td>When set to true hexdump() will return the result as a string instead of directly printing to stdout</td>
   </tr>
 </table>
 
@@ -215,7 +226,7 @@ Output:
 
 ## Using `phphd` from the command line
 
-Beside from Hexdump.php the package contains a command line executable `phphd`. It prints hexdumps either from files or from stdin. Although a linux distribution will regulary already have a hexdump program on board, it might be helpful in some cases. Especially when you are working on Windows. 
+In addition to Hexdump.php the package contains a command line executable `phphd`. It prints hexdumps either from files or from stdin. Although linux distributions usually provide a hexdump utility it might be helpful in some cases. Especially when you are working on Windows. 
 
 `phphd` comes with the following options:
 
