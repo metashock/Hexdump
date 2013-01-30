@@ -6,6 +6,25 @@ What you can see now is the result from grabbing the code from my old harddisk, 
 
 Enjoy!
 
+#Table of Contents
+
+- [Hexdump](#hexdump)
+	- [Installation](#installation)
+		- [Using the PEAR installer](#using-the-pear-installer)
+		- [Manually download and install files](#manually-download-and-install-files)
+	- [Documentation](#documentation)
+		- [hello world](#hello-world)
+		- [The Hexdump class behind the scenes](#the-hexdump-class-behind-the-scenes)
+		- [Available Options](#available-options)
+	- [Code Examples](#code-examples)
+		- [hello world (8 columns)](#hello-world-8-columns)
+		- [Uppercased Hex chars](#uppercased-hex-chars)
+		- [Dump this document](#dump-this-document)
+		- [Dumping to stderr](#dumping-to-stderr)
+		- [Formatting as HTML](#formatting-as-html)
+	- [Using phphd from the command line](#using-phphd-from-the-command-line)
+		- [Example usage](#example-usage)
+
 
 ## Installation
 
@@ -55,6 +74,18 @@ hexdump("hello world!\n");
 Output:
 
     00000000: 68 65 6c 6c 6f 20 77 6f 72 6c 64 21 0a          |hello.world!.|
+
+___
+### The signature
+
+The hexhump function has the following signature:
+
+```php
+string hexdump($data, $ncols = 16, $format = 'plain', $uppercase = TRUE, $output = 'stdout');
+```
+
+Refer to [available options][options] for the documentation of each param.
+
 ___
 ### The `Hexdump` class behind the scenes
 
@@ -69,7 +100,7 @@ This code will behave exactly the same as the hello world example above.
 
 So why an extra class? The purpose of the Hexdump class is to act as a global configuration container for `hexdump()` in order to keep the syntax of the function itself succinct.
 
-Options can be set or queried by using the static method `Hexdump::option()`
+Global options can be set or queried by using the static method `Hexdump::option()`
 
 ```php
 // set option value
@@ -78,18 +109,7 @@ Hexdump::option('option_name', $option_value);
 $option_value = Hexdump::option('option_name');
 ```
 
-
-Note that you can overwrite global options temporarily by passing apropriate arguments to `hexdump()`
-
-
-// hexdump($data, 8, "\n", 'html');
-
-Hexdump::option('format', 'html');
-
-// hexdump($data);
-
-hexdump($data, 16);
-
+If you have non default options, you should set this options globally with `Hexdump::option()`. Doing it you will save to pass them in every call to hexdump().
 
 ___
 ### Available Options
