@@ -10,11 +10,11 @@
   <email>hek2mgl at metashock.net</email>
   <active>yes</active>
  </lead>
- <date>2013-01-24</date>
- <time>22:31:14</time>
+ <date>2013-01-30</date>
+ <time>16:34:14</time>
  <version>
-  <release>1.1.0</release>
-  <api>1.1.0</api>
+  <release>1.2.0</release>
+  <api>1.2.0</api>
  </version>
  <stability>
   <release>stable</release>
