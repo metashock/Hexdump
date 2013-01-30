@@ -2,7 +2,7 @@
 
 This library provides a hexdump() function for php. I've developed it once when I was required to create a PHP client for a binary network protocol and used it to debug the traffic.
 
-What you can see now is the result from grabbing the code from my old harddisk, refactoring it, adding some features, creating a PEAR installer and finally exporting it to github.
+What you can see now is the result from grabbing the code from my old harddisk, refactoring it, adding several features, creating a PEAR installer and finally exporting it to github.
 
 Enjoy!
 
@@ -84,7 +84,7 @@ The hexhump function has the following signature:
 string hexdump($data, $ncols = 16, $format = 'plain', $uppercase = TRUE, $output = 'stdout');
 ```
 
-Refer to [available options][options] for the documentation of each param.
+Please refer to [available options](#Available-Options) section of this document to get information about the params itself and possible values for them.
 
 ___
 ### The `Hexdump` class behind the scenes
@@ -231,7 +231,7 @@ hexdump($moreData);
 ```php
 
 // to get a HTML dump do either 
-hexdump("hello world!\n", 16, 'html');
+hexdump("<hello world!>\n", 16, 'html');
 
 // ... or set the option globally
 Hexdump::option('format', 'html');
@@ -243,6 +243,10 @@ hexdump($data);
 
 Output:
 
+    <pre>00000000: 3c 68 65 6c 6c 6f 20 77 6f 72 6c 64 21 3e 0a    |&lt;hello.world!&gt;.|
+    </pre>
+
+As you can see html special chars will be replaced by entities and the dump is wrapped in `<pre>` tags. This will display the hexdump correctly layouted on a HTML page.
 
 ## Using `phphd` from the command line
 
