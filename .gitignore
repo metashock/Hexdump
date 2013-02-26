@@ -1,0 +1,15 @@
+# build artifacts
+build/api
+build/code-browser
+build/coverage
+build/logs
+build/pdepend
+build/phpdox
+cache.properties
+
+# netbeans folder
+/nbproject
+
+# composer lock
+composer.lock
+

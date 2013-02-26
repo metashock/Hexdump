@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<ruleset name="jam-flavored-pear-standard">
+ <description>This standard is mostly compatible with PEAR</description>
+ <rule ref="PEAR">
+   <!-- I like to have the '{' at the same line as the function definition -->
+   <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine" />
+   <!-- I like to close nested multiline functions like this '));' -->
+   <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
+   <!-- When chain object methods across multiple lines I don't like ts=4 -->
+   <exclude name="PEAR.WhiteSpace.ObjectOperatorIndent.Incorrect" />
+   <!-- Don't like a space after if, for, while, foreach, switch -->
+   <exclude name="PEAR.ControlStructures.ControlSignature" />
+   <!-- I like opening braces of a class declaration to be in a new line -->
+   <exclude name="PEAR.Classes.ClassDeclaration.SpaceBeforeBrace" />
+   <!-- When having long variable names in the comaparison like :
+
+          if($this->getValue()->asInt === Jm_Console_TextStyle::NO_DECORATIONS)
+
+        and the they are in code with high inden, I like it to write:
+
+          if($this->getValue()->asInt
+            === Jm_Console_TextStyle::NO_DECORATIONS) {
+
+          }
+   -->
+   <exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean" />
+
+   <exclude name="PEAR.Commenting.ClassComment.InvalidVersion" />
+
+   <!-- TRUE, FALSE and NULL must be uppercased -->
+   <exclude name="Generic.PHP.LowerCaseConstant" />  
+ </rule>
+
+ <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+ <rule ref="Generic.Commenting.Fixme"/>
+ <rule ref="Generic.CodeAnalysis.UselessOverridingMethod" />
+
+ <!-- TRUE, FALSE and NULL must be uppercased -->
+ <rule ref="Generic.PHP.UpperCaseConstant" />
+
+ <!-- inline control structures are not allowed -->
+ <rule ref="Generic.ControlStructures.InlineControlStructure" />
+
+ <!-- enforce having the '{' at the same line as the function definition -->
+ <!-- rest in peace Mr. Ritchie -->
+ <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie" /> 
+ <!-- Lines can be 80 chars long, but never show errors -->
+ <rule ref="Generic.Files.LineLength">
+  <properties>
+   <property name="lineLimit" value="80"/>
+   <property name="absoluteLineLimit" value="0"/>
+  </properties>
+ </rule>
+ <!-- ... -->
+</ruleset>
