@@ -57,7 +57,7 @@
   <exec executable="phploc">
    <arg value="--log-csv" />
    <arg value="${basedir}/build/logs/phploc.csv" />
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
   </exec>
  </target>
 
@@ -66,14 +66,14 @@
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
    <arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
   </exec>
  </target>
 
  <target name="phpmd"
          description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
   <exec executable="phpmd">
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
    <arg value="text" />
    <arg value="${basedir}/build/phpmd.xml" />
   </exec>
@@ -81,7 +81,7 @@
 
  <target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
   <exec executable="phpmd">
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
    <arg value="xml" />
    <arg value="${basedir}/build/phpmd.xml" />
    <arg value="--reportfile" />
@@ -94,7 +94,7 @@
   <exec executable="phpcs">
    <arg value="--standard=${basedir}/build/phpcs.xml" />
    <arg value="-s" />
-   <arg path="${basedir}/" />
+   <arg path="${basedir}/Hexdump.php" />
   </exec>
  </target>
 
@@ -103,7 +103,7 @@
    <arg value="--report=checkstyle" />
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
    <arg value="--standard=${basedir}/build/phpcs.xml" />
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
   </exec>
  </target>
 
@@ -111,7 +111,7 @@
   <exec executable="phpcpd">
    <arg value="--log-pmd" />
    <arg value="${basedir}/build/logs/pmd-cpd.xml" />
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
   </exec>
  </target>
 
@@ -128,13 +128,13 @@
    <arg value="--log" />
    <arg path="${basedir}/build/logs" />
    <arg value="--source" />
-   <arg path="${basedir}/lib/php" />
+   <arg path="${basedir}/Hexdump.php" />
    <arg value="--output" />
    <arg path="${basedir}/build/code-browser" />
   </exec>
  </target>
 
- <target name="pearpkg" description="creates a pear package from the build">
+<!-- <target name="pearpkg" description="creates a pear package from the build">
     <exec executable="rm">
        <arg value="-rvf"/>
        <arg value="${basedir}/build/tmp"/>
@@ -142,7 +142,7 @@
     <exec executable="mkdir">
        <arg value="-pv"/>
        <arg value="${basedir}/build/tmp"/>
-       <arg value="${basedir}/build/tmp/examples/Jm/Autoloader"/>
+       <arg value="${basedir}/build/tmp/examples.."/>
     </exec>
     <exec executable="cp">
        <arg value="-v" />
@@ -163,5 +163,5 @@
        <arg value="package" />
        <arg value="${basedir}/build/pear2.package.xml" />
     </exec>
- </target>
+ </target> -->
 </project>

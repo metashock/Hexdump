@@ -3,7 +3,7 @@
    backupStaticAttributes="false"
    syntaxCheck="false">
 <php>
-  <includePath>lib/php</includePath>
+  <includePath>.</includePath>
 </php>
 <testsuites>
    <testsuite name="jam">
